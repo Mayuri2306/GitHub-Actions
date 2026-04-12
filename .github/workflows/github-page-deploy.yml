@@ -1,0 +1,35 @@
+name: deploy react app to github pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  pages: write
+  id-token: write
+
+jobs:
+    deploy-to-github-pages:
+      runs-on: ubuntu-latest
+      
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+
+      steps:
+        - name: checkout the code
+          uses: actions/checkout@v6
+        
+        - name: setup Node.js
+          uses: actions/setup-node@v6
+
+        - name: install depencies and build
+          run: npm install && npm run build
+
+        - name: upload static files
+          uses: actions/upload-pages-artifact@v4
+          with:
+            path: .
+
+        - name: deploy to github pages
+          uses: actions/deploy-pages@v4
