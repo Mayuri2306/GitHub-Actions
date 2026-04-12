@@ -1,0 +1,18 @@
+name: React-app-workflow
+
+on: 
+  push:
+    branches: [main]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - name: checkout repo
+            uses: actions/checkout@v4
+          - name: setup node.js environment
+            uses: actions/setup-node@v4
+          - name: install dependencies and build
+            run: npm install && npm run build
+          - name: output 
+            run: echo "app deployed successfully"
