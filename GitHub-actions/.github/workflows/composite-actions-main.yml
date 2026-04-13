@@ -1,0 +1,22 @@
+name: Test Composite Actions
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+    build-using-composite:
+
+        runs-on: self-hosted
+
+        steps:
+          - name: checkout repo
+            uses: actions/checkout@v4
+
+          - name: using composite actions
+            uses: ./.github/actions/react-app-build
+            with:
+                node-version: '20'
+
+            
+            
