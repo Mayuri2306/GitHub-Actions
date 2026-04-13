@@ -18,5 +18,11 @@ jobs:
             with:
                 node-version: '20'
 
+          - name: deploy the app
+            run: |
+              sudo rm -rf /var/www/html/*
+              sudo cp -r dist/* /var/www/html/
+              sudo systemctl restart nginx
+
             
             
