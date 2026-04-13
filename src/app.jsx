@@ -1,73 +1,133 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
-  const [message, setMessage] = useState("");
+  const [text, setText] = useState("");
+  const fullText = "DevOps Engineer 🚀";
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setText(fullText.slice(0, i));
+      i++;
+      if (i > fullText.length) clearInterval(interval);
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
-      
+    <div className="container">
+
       {/* Navbar */}
-      <nav style={{ display: "flex", justifyContent: "space-between" }}>
+      <nav className="navbar">
         <h2>My Portfolio</h2>
         <div>
-          <a href="#" style={{ margin: "10px", color: "white" }}>Home</a>
-          <a href="#" style={{ margin: "10px", color: "white" }}>Projects</a>
-          <a href="#" style={{ margin: "10px", color: "white" }}>Contact</a>
+          <a href="#home">Home</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section style={{ marginTop: "50px" }}>
-        <h1>Hello, I'm a DevOps Engineer 🚀</h1>
-        <p>I build scalable cloud systems and CI/CD pipelines</p>
-        <button 
-          onClick={() => setMessage("Thanks for visiting my portfolio!")}
-          style={{
-            padding: "10px 20px",
-            border: "none",
-            borderRadius: "8px",
-            background: "#00c6ff",
-            color: "white",
-            cursor: "pointer"
-          }}
-        >
-          Click Me
-        </button>
-        <p>{message}</p>
+      {/* Hero */}
+      <section id="home" className="hero fade-in">
+        <h1>
+          Hi, I'm a <span className="typing">{text}</span>
+        </h1>
+
+        <p className="subtitle">
+          I build scalable cloud systems and automate CI/CD pipelines.
+        </p>
+
+        <div className="hero-buttons">
+          <a href="https://github.com/your-username" target="_blank">
+            <button className="btn">GitHub</button>
+          </a>
+
+          <a href="/resume.pdf" download>
+            <button className="btn secondary">Download Resume</button>
+          </a>
+        </div>
       </section>
 
       {/* About */}
-      <section style={{ marginTop: "40px" }}>
+      <section className="section">
         <h2>About Me</h2>
         <p>
-          I am passionate about DevOps, AWS, Kubernetes, Docker, and automation.
+          Passionate DevOps Engineer skilled in AWS, Docker, Kubernetes,
+          Terraform, and CI/CD automation.
         </p>
       </section>
 
       {/* Skills */}
-      <section style={{ marginTop: "40px" }}>
+      <section className="section">
         <h2>Skills</h2>
-        <ul>
-          <li>AWS</li>
-          <li>Docker</li>
-          <li>Kubernetes</li>
-          <li>Terraform</li>
-          <li>Jenkins</li>
-        </ul>
+        <div className="grid">
+          <div className="card">AWS</div>
+          <div className="card">Docker</div>
+          <div className="card">Kubernetes</div>
+          <div className="card">Terraform</div>
+          <div className="card">Jenkins</div>
+          <div className="card">GitHub Actions</div>
+        </div>
       </section>
 
       {/* Projects */}
-      <section style={{ marginTop: "40px" }}>
+      <section id="projects" className="section">
         <h2>Projects</h2>
-        <p>3-Tier Architecture using AWS</p>
-        <p>CI/CD Pipeline with GitHub Actions</p>
+
+        <div className="project-grid">
+
+          <div className="project-card">
+            <h3>3-Tier Architecture on AWS</h3>
+            <p>
+              Deployed scalable architecture using EC2, RDS, and S3 with load balancing.
+            </p>
+            <div className="tags">
+              <span>AWS</span>
+              <span>NGINX</span>
+              <span>MySQL</span>
+            </div>
+            <a href="http://44.243.28.101" target="_blank">Live Demo →</a>
+          </div>
+
+          <div className="project-card">
+            <h3>CI/CD Pipeline</h3>
+            <p>
+              Automated build and deployment using GitHub Actions and self-hosted runners.
+            </p>
+            <div className="tags">
+              <span>GitHub Actions</span>
+              <span>CI/CD</span>
+            </div>
+            <a href="#" target="_blank">View Project →</a>
+          </div>
+
+          <div className="project-card">
+            <h3>Kubernetes Deployment</h3>
+            <p>
+              Deployed containerized apps using Kubernetes with Ingress and services.
+            </p>
+            <div className="tags">
+              <span>Kubernetes</span>
+              <span>Docker</span>
+            </div>
+            <a href="#" target="_blank">View Project →</a>
+          </div>
+
+        </div>
       </section>
 
       {/* Contact */}
-      <section style={{ marginTop: "40px" }}>
-        <h2>Contact</h2>
-        <p>Email: your@email.com</p>
+      <section id="contact" className="section">
+        <h2>9617976164</h2>
+        <p>mayurijhade104@gmail.com</p>
       </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <p>© 2026 Mayuri Jhade | Built with ❤️</p>
+      </footer>
 
     </div>
   );
