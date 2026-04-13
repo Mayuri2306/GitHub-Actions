@@ -1,0 +1,40 @@
+name: deploy-to-ec2
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment: 
+        description: These are the environments on which app will build and deploy
+        required: true
+        default: 'prod'
+        type: choice
+        options:
+          - dev
+          - prod
+          - stage
+jobs:
+    Deployment:
+        runs-on: self-hosted
+        steps:
+          - name: checkout the repo
+            uses: actions/checkout@v4
+
+          - name: setup node.js
+            uses: actions/setup-node@v4
+            with:
+                node-version: 20
+
+          - name: install dependencies
+            run: npm install
+
+          - name: build 
+            run: npm run build
+    
+          - name: serve via nginx
+
+            run: | 
+              sudo rm -rf /var/www/html/*
+              sudo cp -r dist/* /var/www/html
+              sudo systemctl restart nginx
