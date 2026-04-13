@@ -18,13 +18,18 @@ jobs:
 
       steps:
         - name: checkout the code
-          uses: actions/checkout@v6
+          uses: actions/checkout@v4
         
         - name: setup Node.js
-          uses: actions/setup-node@v6
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
 
-        - name: install depencies and build
-          run: npm install && npm run build
+        - name: install depencies 
+          run: npm ci
+
+        - name: build project
+          run: npm run build
 
         - name: upload static files
           uses: actions/upload-pages-artifact@v4
