@@ -25,5 +25,5 @@ runs:
       shell: bash  
 
     - name: Show output
-      run: App Built Successfully
+      run: echo "App Built Successfully"
       shell: bash
