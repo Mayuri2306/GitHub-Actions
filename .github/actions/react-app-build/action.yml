@@ -18,9 +18,12 @@ runs:
 
     - name: Install dependencies
       run: npm install
+      shell: bash
 
     - name: Build app
-      run: npm run build  
+      run: npm run build
+      shell: bash  
 
     - name: Show output
       run: App Built Successfully
+      shell: bash
