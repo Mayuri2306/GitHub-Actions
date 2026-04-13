@@ -3,6 +3,10 @@ name: deploy-to-ec2
 on:
   push:
     branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.jsx'
+      
   workflow_dispatch:
     inputs:
       environment: 

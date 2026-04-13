@@ -3,6 +3,9 @@ name: React-app-workflow
 on: 
   push:
     branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.jsx'
 
 jobs:
     deploy:

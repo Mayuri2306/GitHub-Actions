@@ -3,6 +3,9 @@ name: deploy react app to github pages
 on:
   push:
     branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.jsx'
 
 permissions:
   pages: write
